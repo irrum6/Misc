@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FBG - Fizz Buzz Generator</title>
+    <style>
+        html {
+            font-size: 16px;
+        }
+
+        div {
+            width: 50%;
+        }
+
+        @media screen and (max-width:600px) {
+            div {
+                width: 100%;
+            }
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        input {
+            font-size: 1.5rem;
+            line-height: 1.5;
+        }
+
+        button {
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Fizz Buzz Generator</h1>
+    <div>
+        <form>
+            <input type="number" id="div1" name="divisor1" min="2" max="19" value="3" placeholder="1st divisor">
+            <input type="number" id="div2" name="divisor2" min="3" max="19" value="5" placeholder="2nd divisor">
+            <input type="text" id="fizz" name="fizz" placeholder="fizz word">
+            <input type="text" id="buzz" name="buzz" placeholder="buzz word">
+            <input type="number" id="range" name="range" min="50" max="250" value="100"
+                placeholder="Range - from one to ... N">
+            <button>Run</button>
+            <textarea id="output" name="output" rows="20" cols="10"></textarea>
+        </form>
+    </div>
+    <script>
+        const query = s => document.body.querySelector(s);
+        let on = "addEventListener";
+
+        function make_fizz_buzz(a, b, s1, s2) {
+            const c = (a != b) ? a * b : a;
+            return function (range) {
+                let strout = "";
+                let shout = "";
+                for (let i = 0; i < range; i++) {
+
+                    if (i % c == 0) {
+                        shout = `${i} ${s1}${s2}\n`;
+                        strout = strout.concat(shout);
+                        continue;
+                    }
+                    if (i % a == 0) {
+                        shout = `${i} ${s1}\n`;
+                        strout = strout.concat(shout);
+                        continue;
+                    }
+
+                    if (i % b == 0) {
+                        shout = `${i} ${s1}\n`;
+                        strout = strout.concat(shout);
+                        continue;
+                    }
+
+                }
+                document.getElementById("output").value = strout;
+            }
+        }
+        query("button")[on]('click', (e) => {
+            e.preventDefault();
+            let a = document.getElementById("div1").value;
+            let b = document.getElementById("div2").value;
+            let s1 = document.getElementById("fizz").value;
+            let s2 = document.getElementById("buzz").value;
+            let range = document.getElementById("range").value;
+
+            const fizzer = make_fizz_buzz(a, b, s1, s2);
+            fizzer(range);
+        });
+    </script>
+</body>
+
+</html>
