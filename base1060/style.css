@@ -1,0 +1,277 @@
+html {
+    font-size: 16px;
+}
+
+div>img {
+    width: 72px;
+    height: 72px;
+}
+
+p > img {
+    width: 48px;
+    height: 48px;
+}
+
+p {
+    font-size: 3rem;
+}
+
+input {
+    line-height: 1.5;
+    width: 300px;
+}
+
+button,
+input {
+    font-size: 1.5rem;
+}
+
+/*Not Optimal*/
+/*Not Optimal!*/
+img.digit {
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+/*0-9*/
+img.d0 {
+    background-image: url("./v0/dgt_0.svg");
+}
+
+img.d1 {
+    background-image: url("./v0/dgt_1.svg");
+}
+
+img.d2 {
+    background-image: url("./v0/dgt_2.svg");
+}
+
+img.d3 {
+    background-image: url("./v0/dgt_3.svg");
+}
+
+img.d4 {
+    background-image: url("./v0/dgt_4.svg");
+}
+
+img.d5 {
+    background-image: url("./v0/dgt_5.svg");
+}
+
+img.d6 {
+    background-image: url("./v0/dgt_6.svg");
+}
+
+img.d7 {
+    background-image: url("./v0/dgt_7.svg");
+}
+
+img.d8 {
+    background-image: url("./v0/dgt_8.svg");
+}
+
+img.d9 {
+    background-image: url("./v0/dgt_9.svg");
+}
+/*10-19*/
+img.d10 {
+    background-image: url("./v0/dgt_10.svg");
+}
+
+img.d11 {
+    background-image: url("./v0/dgt_11.svg");
+}
+
+img.d12 {
+    background-image: url("./v0/dgt_12.svg");
+}
+
+img.d13 {
+    background-image: url("./v0/dgt_13.svg");
+}
+
+img.d14 {
+    background-image: url("./v0/dgt_14.svg");
+}
+
+img.d15 {
+    background-image: url("./v0/dgt_15.svg");
+}
+
+img.d16 {
+    background-image: url("./v0/dgt_16.svg");
+}
+
+img.d17 {
+    background-image: url("./v0/dgt_17.svg");
+}
+
+img.d18 {
+    background-image: url("./v0/dgt_18.svg");
+}
+
+img.d19 {
+    background-image: url("./v0/dgt_19.svg");
+}
+/*20-29*/
+img.d20 {
+    background-image: url("./v0/dgt_20.svg");
+}
+
+img.d21 {
+    background-image: url("./v0/dgt_21.svg");
+}
+
+img.d22 {
+    background-image: url("./v0/dgt_22.svg");
+}
+
+img.d23 {
+    background-image: url("./v0/dgt_23.svg");
+}
+
+img.d24 {
+    background-image: url("./v0/dgt_24.svg");
+}
+
+img.d25 {
+    background-image: url("./v0/dgt_25.svg");
+}
+
+img.d26 {
+    background-image: url("./v0/dgt_26.svg");
+}
+
+img.d27 {
+    background-image: url("./v0/dgt_27.svg");
+}
+
+img.d28 {
+    background-image: url("./v0/dgt_28.svg");
+}
+
+img.d29 {
+    background-image: url("./v0/dgt_29.svg");
+}
+/*30-39*/
+img.d30 {
+    background-image: url("./v0/dgt_30.svg");
+}
+
+img.d31 {
+    background-image: url("./v0/dgt_31.svg");
+}
+
+img.d32 {
+    background-image: url("./v0/dgt_32.svg");
+}
+
+img.d33 {
+    background-image: url("./v0/dgt_33.svg");
+}
+
+img.d34 {
+    background-image: url("./v0/dgt_34.svg");
+}
+
+img.d35 {
+    background-image: url("./v0/dgt_35.svg");
+}
+
+img.d36 {
+    background-image: url("./v0/dgt_36.svg");
+}
+
+img.d37 {
+    background-image: url("./v0/dgt_37.svg");
+}
+
+img.d38 {
+    background-image: url("./v0/dgt_38.svg");
+}
+
+img.d39 {
+    background-image: url("./v0/dgt_39.svg");
+}
+/*40-49*/
+img.d40 {
+    background-image: url("./v0/dgt_40.svg");
+}
+
+img.d41 {
+    background-image: url("./v0/dgt_41.svg");
+}
+
+img.d42 {
+    background-image: url("./v0/dgt_42.svg");
+}
+
+img.d43 {
+    background-image: url("./v0/dgt_43.svg");
+}
+
+img.d44 {
+    background-image: url("./v0/dgt_44.svg");
+}
+
+img.d45 {
+    background-image: url("./v0/dgt_45.svg");
+}
+
+img.d46 {
+    background-image: url("./v0/dgt_46.svg");
+}
+
+img.d47 {
+    background-image: url("./v0/dgt_47.svg");
+}
+
+img.d48 {
+    background-image: url("./v0/dgt_48.svg");
+}
+
+img.d49 {
+    background-image: url("./v0/dgt_49.svg");
+}
+/*50-59*/
+img.d50 {
+    background-image: url("./v0/dgt_50.svg");
+}
+
+img.d51 {
+    background-image: url("./v0/dgt_51.svg");
+}
+
+img.d52 {
+    background-image: url("./v0/dgt_52.svg");
+}
+
+img.d53 {
+    background-image: url("./v0/dgt_53.svg");
+}
+
+img.d54 {
+    background-image: url("./v0/dgt_54.svg");
+}
+
+img.d55 {
+    background-image: url("./v0/dgt_55.svg");
+}
+
+img.d56 {
+    background-image: url("./v0/dgt_56.svg");
+}
+
+img.d57 {
+    background-image: url("./v0/dgt_57.svg");
+}
+
+img.d58 {
+    background-image: url("./v0/dgt_58.svg");
+}
+
+img.d59 {
+    background-image: url("./v0/dgt_59.svg");
+}
