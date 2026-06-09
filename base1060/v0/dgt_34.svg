@@ -51,11 +51,11 @@
        height="48"
        x="0"
        y="0"
-       style="fill:#ff9090;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:#e03080;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1"
        ry="2" />
     <path
        sodipodi:type="star"
-       style="fill:#ff9090;stroke:#fffffe;stroke-width:2;fill-opacity:1;stroke-opacity:1;stroke-dasharray:none"
+       style="fill:none;stroke:#fffffe;stroke-width:2.5;fill-opacity:1;stroke-opacity:1;stroke-dasharray:none"
        id="path1"
        inkscape:flatsided="true"
        sodipodi:sides="3"
