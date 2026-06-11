@@ -1,14 +1,12 @@
 class Digit60Display extends HTMLElement {
+    static #maxInt = 1073741824;
     constructor() {
         super();
-        let template = document.getElementById("digit_template");
-        let templateContent = template.content;
-        let clone = templateContent.cloneNode(true);
 
         let value = this.getAttribute("val");
         let num = Number(value);
 
-        if (num > 1073741824 || num < 0) {
+        if (num > Digit60Display.#maxInt || num < 0) {
             num = 1;
         }
 
@@ -37,19 +35,7 @@ class Digit60Display extends HTMLElement {
         let images = [];
         //convert to images
         for (const rem of remainders) {
-            let img = document.createElement("img");
-
-            let src = `./v0/dgt_${rem}.svg`;
-            let title = this.#mkTitle(rem);
-
-            img.setAttribute("src", src);
-            img.setAttribute("alt", title);
-            img.setAttribute("title", title);
-
-            img.setAttribute("width", lnum);
-            img.setAttribute("height", lnum);
-            img.setAttribute("style", "margin-right:4px;");
-
+            let img = Digit60.mkimg(rem, lnum);
             images.push(img);
         }
 
@@ -59,30 +45,55 @@ class Digit60Display extends HTMLElement {
             shadowRoot.appendChild(img);
         }
 
-        shadowRoot.appendChild(clone);
     }
 
-    #mkTitle(num) {
-
-        if (num > 49) {
-            return `digit ${num} in base 10-60, digit ${num % 10} in base 10 inside a pentagon`;
-        }
-        if (num > 39) {
-            return `digit ${num} in base 10-60, digit ${num % 10} in base 10 inside a square`;
-        }
-        if (num > 29) {
-            return `digit ${num} in base 10-60, digit ${num % 10} in base 10 inside a triangle`;
-        }
-        if (num > 19) {
-            return `digit ${num} in base 10-60, digit ${num % 10} in base 10 with dashes above and below it`;
+    set value(val) {
+        let num = Number(val);
+        //if greater than max or less than zero
+        if (num > Digit60Display.#maxInt || num < 0) {
+            return;
         }
 
-        if (num > 9) {
-            return `digit ${num} in base 10-60, digit ${num % 10} in base 10  with dash above it`;
+        let remainders = [];
+        //convert
+        //after loop remainder will have all the 10-60 digits of num
+        while (num > 59) {
+            let rem = num % 60;
+            let div = (num - rem) / 60;
+            remainders.unshift(rem);
+            num = div;
         }
 
-        return `digit ${num} in base 10-60, digit ${num % 10} in base 10`;
+        if (num > 0) {
+            remainders.unshift(num);
+        }
+
+        //other loops would yield an logic error as length keeps reduced
+        while (this.shadowRoot.children.length > 0) {
+            let chi = this.shadowRoot.children[0];
+            this.shadowRoot.removeChild(chi);
+        }
+
+        //img properties
+        let sidelength = this.getAttribute("h");
+        let lnum = Number(sidelength);
+
+        if (lnum > 144 || lnum < 48) {
+            lnum = 48;
+        }
+
+        let images = [];
+        //convert to images
+        for (const rem of remainders) {
+            let img = Digit60.mkimg(rem, lnum);
+            images.push(img);
+        }
+
+        for (const img of images) {
+            this.shadowRoot.appendChild(img);
+        }
     }
+
 }
 
 Object.freeze(Digit60Display);

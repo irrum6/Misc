@@ -1,9 +1,6 @@
 class Digit60 extends HTMLElement {
     constructor() {
         super();
-        let template = document.getElementById("digit_template");
-        let templateContent = template.content;
-        let clone = templateContent.cloneNode(true);
 
         let value = this.getAttribute("val");
         let num = Number(value);
@@ -19,43 +16,50 @@ class Digit60 extends HTMLElement {
             lnum = 48;
         }
 
-        let alt = `digit ${num} in base 10-60`;
-        let src = `./v0/dgt_${num}.svg`;
+        let img = Digit60.mkimg(num, lnum);
 
-        let title = `digit ${num} in base 10-60, digit ${num % 10} in base 10`;
+        const shadowRoot = this.attachShadow({ mode: 'open' });
+        shadowRoot.appendChild(img);
+    }
 
-        if (num > 9) {
-            title = `digit ${num} in base 10-60, digit ${num % 10} in base 10  with dash above it`;
-        }
-
-        if (num > 19) {
-            title = `digit ${num} in base 10-60, digit ${num % 10} in base 10 with dashes above and below it`;
-        }
-
-        if (num > 29) {
-            title = `digit ${num} in base 10-60, digit ${num % 10} in base 10 inside a triangle`;
-        }
-
-        if (num > 39) {
-            title = `digit ${num} in base 10-60, digit ${num % 10} in base 10 inside a square`;
-        }
-
-        if (num > 49) {
-            title = `digit ${num} in base 10-60, digit ${num % 10} in base 10 inside a pentagon`;
-        }
-
-
+    static mkimg(digit, length) {
         let img = document.createElement("img");
+
+        let alt = `digit ${digit} in base 10-60`;
+        let src = `./v0/dgt_${digit}.svg`;
+        let title = Digit60.mktitle(digit);
+
         img.setAttribute("src", src);
         img.setAttribute("alt", title);
         img.setAttribute("title", title);
 
-        img.setAttribute("width", lnum);
-        img.setAttribute("height", lnum);
+        img.setAttribute("width", length);
+        img.setAttribute("height", length);
+        img.setAttribute("style", "margin-right:3px;");
 
-        const shadowRoot = this.attachShadow({ mode: 'open' });
-        shadowRoot.appendChild(img);
-        shadowRoot.appendChild(clone);
+        return img;
+    }
+
+    static mktitle(num) {
+
+        if (num > 49) {
+            return `digit ${num} in base 10-60, digit ${num % 10} in base 10 inside a pentagon`;
+        }
+        if (num > 39) {
+            return `digit ${num} in base 10-60, digit ${num % 10} in base 10 inside a square`;
+        }
+        if (num > 29) {
+            return `digit ${num} in base 10-60, digit ${num % 10} in base 10 inside a triangle`;
+        }
+        if (num > 19) {
+            return `digit ${num} in base 10-60, digit ${num % 10} in base 10 with dashes above and below it`;
+        }
+
+        if (num > 9) {
+            return `digit ${num} in base 10-60, digit ${num % 10} in base 10  with dash above it`;
+        }
+
+        return `digit ${num} in base 10-60, digit ${num % 10} in base 10`;
     }
 }
 

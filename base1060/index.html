@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Base 10-60 v0</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="index.css">
 </head>
 
 <body>
@@ -145,7 +145,7 @@
             -
             <dig-it val="33"></dig-it><dig-it val="12"></dig-it>
             =
-            <dig-it val="35"></dig-it> <dig-it val="4"></dig-it>
+            <dig-it val="35"></dig-it><dig-it val="4"></dig-it>
         </p>
     </div>
     <h2>Conversion Examples:</h2>
@@ -168,7 +168,7 @@
         </p>
         <p>
             <span style="font-size: 3rem;">16384 = </span>
-            <dig-it val="4" h="60"></dig-it><dig-it val="33" h="60"></dig-it><dig-it val="4" h="60"></dig-it>
+            <digit-display val="16384" h="60"></digit-display>
         </p>
         <p>
             <span style="font-size: 3rem;">32768 = </span>
@@ -179,56 +179,43 @@
     <div>
         <input type="number" name="number" min="1" max="1073741824" value="16777216" id="number">
         <button id="converter">Convert to 10-60 base</button>
-        <div id="out" style="margin-top: 20px;"></div>
+    </div>
+    <div>
+        <p style="font-size: 1.25rem;">(Integer numbers between 1 and 1073741824 are accepted)</p>
+    </div>
+    <div style="margin-top: 20px;">
+        <digit-display id="out" val="16777216"></digit-display>
     </div>
 
-    <div>
-        <!-- <digit-display val="4096" h="72"></digit-display> -->
-    </div>
-    <template id="digit_template"> </template>
-    <template id="digit_display_template"> </template>
     <script src="digit.js"></script>
     <script src="digit_display.js"></script>
     <script>
+        //output display
+        const output = document.getElementById("out");
+        //input element
+        const input = document.getElementById("number");
         const convert = (event) => {
             event.preventDefault();
             let value = document.getElementById("number").value
             let num = Number(value);
 
-            let remainders = [];
-
-            while (num > 59) {
-                let rem = num % 60;
-                let div = (num - rem) / 60;
-                remainders.unshift(rem);
-                num = div;
-            }
-
-            if (num > 0) {
-                remainders.unshift(num);
-            }
-
-            let ourHTML = "";
-
-            for (const rem of remainders) {
-                //ourHTML += `<img class="digit d${rem}">`
-                ourHTML += `<dig-it val="${rem}"></dig-it>`
-            }
-
             //convert num to base 60
-            document.getElementById("out").innerHTML = ourHTML;
+            //element does the conversion
+            output.value = num;
         };
 
         //some variance in default input value shown
-        document.getElementById("number").value = "16777216";
+        input.value = "16777216";
 
         let trem = Date.now() % 100;
 
         if (trem >= 51 && trem <= 90) {
-            document.getElementById("number").value = "16777777";
+            input.value = "16777777";
+            output.value = "16777777";
         }
         if (trem >= 10 && trem <= 50) {
-            document.getElementById("number").value = "16778000";
+            input.value = "16778000";
+            output.value = "16778000";
         }
 
         document.getElementById("converter").addEventListener('click', convert);
