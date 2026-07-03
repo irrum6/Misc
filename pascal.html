@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pascal Triangle Auto</title>
+    <style>
+        html {
+            font-size: 20px;
+        }
+
+        @media screen and (max-width:1280px) {
+            html {
+                font-size: 15px;
+            }
+        }
+
+
+        @media screen and (min-width:2560px) {
+            html {
+                font-size: 24px;
+            }
+        }
+
+        @media screen and (min-width:3840px) {
+            html {
+                font-size: 30px;
+            }
+        }
+
+        span.cell {
+            display: inline-block;
+            border: 0.125rem solid black;
+            margin-left: 0.25rem;
+            padding: 0.125rem;
+        }
+
+        div {
+            margin-top: 0.5rem;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+    </main>
+
+    <script>
+        //
+        function mkcell(text) {
+            let span = document.createElement("span");
+            span.classList.add("cell");
+            span.textContent = text;
+            return span;
+        }
+        /**
+         * @param {Integer} n  
+         * @param {Integer} delay
+        */
+
+        function pascal(n, delay) {
+            //defaults to 0
+            if (!Number.isInteger(n)) {
+                n = 0;
+            }
+            //defaults to 300ms
+            if (!Number.isInteger(delay) || delay == 0) {
+                delay = 300;
+            }
+
+            if (n == 0) {
+                let row = document.createElement("div");
+                let cell = mkcell("1");
+                row.appendChild(cell);
+                main.appendChild(row);
+                return;
+            }
+
+            if (n == 1) {
+                pascal(0)
+
+                let row2 = document.createElement("div");
+
+                let c1 = mkcell("1");
+                let c2 = mkcell("1");
+
+                row2.appendChild(c1);
+                row2.appendChild(c2);
+
+                main.appendChild(row2);
+
+                return;
+            }
+
+            if (n > 1) {
+
+                pascal(1);
+
+                let row1 = [1, 1];
+                let row2 = [];
+
+                let rowindex = 2;
+
+                let i = 0;
+
+                let intms = delay;
+
+                const intid = window.setInterval(() => {
+                    debugger;
+                    if (rowindex > n) {
+                        window.clearInterval(intid);
+                        return;
+                    }
+
+                    const rowid = `rawdy#${rowindex}`;
+
+
+                    if (i == 0) {
+                        row2[i] = 1;
+                        //rowdiv
+                        let rawdy = document.createElement("div");
+                        rawdy.id = rowid
+                        main.appendChild(rawdy);
+                    }
+
+                    if (i == rowindex) {
+                        row2[i] = 1;
+                    }
+
+                    if (i > 0 && i < rowindex) {
+                        row2[i] = row1[i - 1] + row1[i];
+                    }
+
+                    let rawdy = document.getElementById(rowid);
+                    let cell = mkcell(row2[i]);
+                    rawdy.appendChild(cell);
+
+                    i += 1;
+
+                    if (i > rowindex) {
+                        rowindex += 1;
+                        row1 = row2;
+                        row2 = [];
+                        i = 0;
+                    }
+
+                }, intms);
+            }
+
+        }
+
+    </script>
+    <script>
+        const main = document.body.querySelector("main");
+
+        const params = Object.create(null);
+
+        const serc = window.location.search;
+        const split = serc.replace("?", "").split("&");
+
+        for (const sp of split) {
+            const kv = sp.split("=");
+            const k = kv[0];
+            const v = kv[1];
+            params[k] = v;
+        }
+
+        pascal(Number(params.n), Number(params.delay));
+
+    </script>
+</body>
+
+</html>
