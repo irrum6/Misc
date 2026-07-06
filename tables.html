@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aspect Ratio Table</title>
+    <style>
+        html {
+            font-size: 20px;
+        }
+
+        div {
+            margin-top: 1rem;
+        }
+
+        span {
+            font-weight: bold;
+        }
+
+        #height_table {
+            display: grid;
+            grid-template-columns: repeat(7, auto);
+            grid-template-rows: auto;
+            row-gap: 0.75rem;
+            column-gap: 0.5rem;
+        }
+
+        #height_table>div {
+            margin-top: 0.75rem;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Screen Aspect Ratio Table</h1>
+    <main>
+        <div>
+            <span style="color:blue;">W</span>
+            width
+        </div>
+        <div>
+            <span style="color:red;">H</span>
+            height
+        </div>
+        <div>
+            <span>D</span> - Diagonal
+        </div>
+        <div>
+            <span style="color: blue;">W</span>
+            <span>/</span>
+            <span style="color: red;">H</span>
+            Screen Aspect Ration : width over height
+        </div>
+        <div>
+            <span>D/</span>
+            <span style="color: red;">H</span>
+            Ratio of diagonal over height
+        </div>
+        <div>
+            <span style="color: blueviolet;"> Formula:</span>
+        </div>
+        <div>
+            <span style="color: rgb(128, 256, 64); background-color: black;">
+                const dh = (w, h) => Math.sqrt((w*w +h*h)/(h*h))
+            </span>
+            <!-- or Math.sqrt(1+(w*w)/(h*h)) -->
+        </div>
+
+        <div>
+            <span>D/</span>
+            <span style="color: blue;">W</span>
+            Ratio of Diagonal over width
+        </div>
+        <div>
+            <span style="color: blueviolet;"> Formula:</span>
+        </div>
+        <div>
+            <span style="color: rgb(128, 256, 64); background-color: black;">
+                const dw = (w, h) => Math.sqrt((w*w +h*h)/(w*w))
+            </span>
+            <!-- or Math.sqrt(1+(h*h)/(w*w)) -->
+        </div>
+
+        <div id="height_table">
+            <!-- head -->
+            <div>
+                <span style="color: blue;">W</span>
+                <span>/</span>
+                <span style="color: red;">H</span>
+            </div>
+            <div>
+                <span style="color: blue;">W</span>
+                <span>/</span>
+                <span style="color: red;">H</span>
+                in Decimal notation
+            </div>
+            <div>
+                <span>D/</span>
+                <span style="color: red;">H</span>
+                up 3 decimal points
+            </div>
+            <div>
+                <span>D/</span>
+                <span style="color: red;">H</span>
+                up 5 decimal points
+            </div>
+            <div>
+                <span>D/</span>
+                <span style="color: red;">H</span>
+                Formula
+            </div>
+            <div>
+                <span>D/</span>
+                <span style="color: blue;">W</span>
+                up 5 decimal points
+            </div>
+            <div>
+                <span>D/</span>
+                <span style="color: blue;">W</span>
+                Formula
+            </div>
+            <!-- 5/4  -->
+            <div>5/4 </div>
+            <div>1.25</div>
+            <div>1.601</div>
+            <div>1.60078</div>
+            <div>Math.sqrt(41/16)</div>
+            <div>1.28062</div>
+            <div>Math.sqrt(41/25)</div>
+            <!-- 4/3 -->
+            <div>4/3</div>
+            <div>1.33</div>
+            <div>1.667</div>
+            <div>1.66667</div>
+            <div>Math.sqrt(25/9)</div>
+            <div>1.25</div>
+            <div>Math.sqrt(25/16)</div>
+            <!-- 3/2 -->
+            <div>3/2 </div>
+            <div>1.5</div>
+            <div>1.803</div>
+            <div>1.80278</div>
+            <div>Math.sqrt(3.25)</div>
+            <div>1.20185</div>
+            <div>Math.sqrt(13/9)</div>
+            <!-- 16/10 -->
+            <div>16/10 </div>
+            <div>1.6 </div>
+            <div>1.887 </div>
+            <div>1.88680</div>
+            <div>Math.sqrt(356/100)</div>
+            <div>1.17925</div>
+            <div>Math.sqrt(356/256)</div>
+            <!-- 5/3 -->
+            <div>5/3</div>
+            <div>1.667</div>
+            <div>1.943 </div>
+            <div>1.94365</div>
+            <div>Math.sqrt(34/9)</div>
+            <div>1.16619</div>
+            <div>Math.sqrt(34/25)</div>
+            <!-- 16/9 -->
+            <div>16/9</div>
+            <div>1.778</div>
+            <div>2.039</div>
+            <div>2.03973</div>
+            <div>Math.sqrt(337/81)</div>
+            <div>1.14735</div>
+            <div>Math.sqrt(337/256)</div>
+            <!-- 15/8 -->
+            <div>15/8</div>
+            <div>1.875</div>
+            <div>2.125</div>
+            <div>2.125</div>
+            <div>Math.sqrt(289/64)</div>
+            <div>1.13333</div>
+            <div>Math.sqrt(289/225)</div>
+            <!-- 17/9 -->
+            <div>17/9</div>
+            <div>1.889</div>
+            <div>2.137</div>
+            <div>2.13726</div>
+            <div>Math.sqrt(370/81)</div>
+            <div>1.13149</div>
+            <div>Math.sqrt(370/289)</div>
+            <!-- 18/9  -->
+            <div>18/9</div>
+            <div>2</div>
+            <div>2.236</div>
+            <div>2.23607</div>
+            <div>Math.sqrt(5)</div>
+            <div>1.11803</div>
+            <div>Math.sqrt(5/4)</div>
+            <!-- 19/9   -->
+            <div>19/9 </div>
+            <div>2.111</div>
+            <div>2.336</div>
+            <div>2.33598</div>
+            <div>Math.sqrt(442/81)</div>
+            <div>1.10652</div>
+            <div>Math.sqrt(442/361)</div>
+            <!-- 20/9 -->
+            <div>20/9</div>
+            <div>2.222</div>
+            <div>2.437</div>
+            <div>2.43686</div>
+            <div>Math.sqrt(481/81)</div>
+            <div>1.09659</div>
+            <div>Math.sqrt(481/400)</div>
+            <!--  21/9 -->
+            <div>21/9</div>
+            <div>2.333</div>
+            <div>2.538</div>
+            <div>2.53859</div>
+            <div>Math.sqrt(522/81)</div>
+            <div>1.08797</div>
+            <div>Math.sqrt(522/441)</div>
+            <!-- 2.35/1 -->
+            <div>2.35/1</div>
+            <div>2.35</div>
+            <div>2.554</div>
+            <div>2.55392</div>
+            <div>Math.sqrt(6.5225)</div>
+            <div>1.08677</div>
+            <div>Math.sqrt(6.5225 / 5.5225)</div>
+            <!-- 64/27(21.33/9)  -->
+            <div>64/27</div>
+            <div>2.37 </div>
+            <div>2.573</div>
+            <div>2.57267</div>
+            <div>Math.sqrt((4825)/729)</div>
+            <div>1.08535</div>
+            <div>Math.sqrt((4825)/4096)</div>
+        </div>
+    </main>
+</body>
+
+</html>
