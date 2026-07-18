@@ -2,7 +2,7 @@ html {
     font-size: 16px;
 }
 
-div#grid{
+div#grid {
     display: grid;
     justify-content: center;
 }
@@ -10,7 +10,24 @@ div#grid{
 button.cell {
     display: inline-grid;
     outline: none;
-    width: 50vh;
-    height: 50vh;
     border: 4px solid white;
+}
+
+button.cell.tnt {
+    animation-name: danger;
+    animation-duration: 8s;
+    animation-fill-mode: both;
+    animation-iteration-count: 1;
+}
+
+@keyframes danger {
+    25%{
+        width: 33vh;
+        height: 33vh;
+    }
+    100% {
+        background-color: transparent;
+        width: 66vh;
+        height: 66vh;
+    }
 }
