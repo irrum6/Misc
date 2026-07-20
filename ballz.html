@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ballz Demo</title>
+</head>
+
+<body>
+    <canvas id="canvas1" width="960" height="480" style="background-color:orange"></canvas>
+    <script>
+        class BallColor {
+            #red;
+            #green;
+            #blue;
+            constructor(r, g, b) {
+                this.#red = r;
+                this.#green = g;
+                this.#blue = b;
+            }
+            toString() {
+                return `rgb(${this.#red},${this.#green},${this.#blue})`;
+            }
+            static randRGB() {
+                let colors = new Uint8Array(3);
+                window.crypto.getRandomValues(colors);
+
+                let [r, g, b] = colors;
+
+                return `rgb(${r},${g},${b})`;
+            }
+        }
+
+        class Point {
+            x;
+            y;
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+            }
+        }
+
+        class Ball {
+            #coords;
+            #radius;
+            #vx;
+            #vy;
+            #color;
+            constructor(coords, radius, vx, vy, color) {
+                this.#coords = Object.create(null);
+                this.#coords.x = coords.x;
+                this.#coords.y = coords.y;
+                this.#radius = radius;
+                this.#color = color;
+                //"0000C8";
+                this.#vx = vx;
+                this.#vy = vy;
+            }
+            draw(context) {
+                let { x, y } = this.#coords;
+                let radius = this.#radius;
+                context.fillStyle = this.#color.toString();
+                context.beginPath();
+                context.arc(x, y, radius, 0, Math.PI * 2, true);
+                context.closePath();
+                context.fillStyle = this.#color.toString();
+                //this.context.strokeStyle = this.color;
+                context.fill();
+            }
+            move(bounds) {
+                let { x, y } = this.#coords;
+                let radius = this.#radius;
+
+                if ((x + radius > bounds.xfar) || (x - radius < bounds.xclose)) {
+                    this.#vx = this.#vx * -1;
+                }
+                if ((y + radius > bounds.ylow) || (y - radius < bounds.yhigh)) {
+                    this.#vy = this.#vy * -1;
+                }
+                this.#coords.x += this.#vx;
+                this.#coords.y += this.#vy;
+
+            }
+            collide(otherBall) {
+                let { x, y } = this.#coords;
+                let radius = this.#radius;
+                //when OO1 <r+r1 balls collide if = touch and if  > are far away
+                //lets callcualte OO1 with this formula
+                //if O:x,y and O1:x1,y1 then
+                //OO1= sqrt(Math.pow(x1-x,2)+Math.pow(y1-y,2))
+                var distance = sqrt(Math.pow(x - otherBall.x, 2) + Math.pow(y - otherBall.y, 2));
+                //planets collide
+                if (distance < radius + otherBall.radius) {
+                    //thing just happened
+                    //they go opposite
+                    this.#vx = this.#vx * -1;
+                    this.#vy = this.#vy * -1;
+                    otherBall.#vx = otherBall.#vx * -1;
+                    otherBall.#vy = otherBall.#vy * -1;
+                }
+            }
+        };
+
+        let canvas = document.getElementById('canvas1');
+        let context = canvas.getContext('2d');
+
+        let bounds = { xclose: 0, xfar: canvas.width, ylow: canvas.height, yhigh: 0 };
+
+        let lastRun;
+        let fps;
+
+        let pointX = new Point(25, 25);
+        let radius = 25;
+        let vx = 3;
+        let vy = 1
+        let color = new BallColor(0, 0, 200);
+        let startBall = new Ball(pointX, radius, vx, vy, color);
+
+        let balls = [startBall];
+
+        let fpsTextColor = new BallColor(0, 0, 170).toString();
+        let fpsTextFont = "30px Verdana";
+        let clickTextColor = new BallColor(0, 170, 0).toString();
+        let clickTextFont = "30px Verdana";
+        let clickText = 'Click anywhere in a canvas for more balls';
+
+        function draw() {
+
+            context.clearRect(0, 0, canvas.width, canvas.height);
+
+            for (let i = 0, len = balls.length; i < len; i++) {
+                balls[i].move(bounds);
+                balls[i].draw(context);
+            }
+
+            //FPS
+            if (!lastRun) {
+                lastRun = new Date().getTime();
+            }
+
+            var delta = (new Date().getTime() - lastRun) / 1000;
+            lastRun = new Date().getTime();
+            fps = Math.round(1 / delta);
+
+            context.fillStyle = fpsTextColor;
+            context.font = fpsTextFont;
+            context.fillText(fps + 'FPS', 0, 50);
+            context.fillStyle = clickTextColor;
+            context.font = clickTextFont;
+            context.fillText(clickText, 50, 150);
+            window.requestAnimationFrame(draw);
+        }
+
+        window.requestAnimationFrame(draw);
+
+        canvas.addEventListener('mousedown', function (event) {
+            //starting point
+            let startpt = new Point(event.clientX, event.clientY);
+            let vx = Math.round(Math.random() * 10);
+            let vy = Math.round(Math.random() * 10);
+            let radius = 25;
+            let color = BallColor.randRGB();
+
+            let ball = new Ball(startpt, radius, vx, vy, color);
+
+            balls.push(ball);
+        });
+
+    </script>
+</body>
+
+</html>
